@@ -25,6 +25,8 @@ class Actor
           next if check.call(value)
 
           name = name.to_s.sub(/^must_/, '')
+          # Why not considering that as a `Failure`? Here, I feel like we loose
+          # the context and that it is too bad.
           raise ArgumentError,
                 "Input #{key} must #{name} but was #{value.inspect}."
         end

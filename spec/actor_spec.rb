@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# Is there a way to make that more easier to load?
+# I'm thinking about having explicit dependecies between example
+# files (require_relative) and some `Dir[].each { |f| require f }`
+# magic in the spec_helper.
+
 require 'examples/add_greeting_with_default'
 require 'examples/add_greeting_with_lambda_default'
 require 'examples/add_hash_to_context'

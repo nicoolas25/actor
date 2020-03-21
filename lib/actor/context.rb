@@ -2,6 +2,13 @@
 
 class Actor
   # Represents the result of an action.
+  #
+  # From the usage we have here, what would be the downside of using a `Hash`
+  # rather than an OpenStruct as a parent for `Context`? It looks full of
+  # `#to_h` calls anyway. Adding `fail!` and `succeed!` still works, the API
+  # would be less user friendly with all those `context#[]` calls but people
+  # are very familiar with Hashes and their API. And you could still have the
+  # dynamically defined input methods (if really necessary).
   class Context < OpenStruct
     def self.to_context(data)
       return data if data.is_a?(self)
