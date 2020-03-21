@@ -7,6 +7,7 @@ require 'actor/success'
 require 'actor/context'
 require 'actor/filtered_context'
 
+require 'actor/core_api'
 require 'actor/playable'
 require 'actor/attributable'
 require 'actor/defaultable'
@@ -17,20 +18,38 @@ require 'actor/conditionable'
 # Actors should start with a verb, inherit from Actor and implement a `call`
 # method.
 class Actor
+  include CoreAPI
+
   include Attributable
+  include Conditionable
+  include Defaultable
+  include Requireable
+  include TypeCheckable
+
   include Playable
-  prepend Defaultable
-  prepend TypeCheckable
-  prepend Requireable
-  prepend Conditionable
 
   class << self
+    # Declare an expected input
+    def input(name, **arguments)
+      inputs[name] = arguments
+    end
+
+    # Declare an expected output
+    def output(name, **arguments)
+      outputs[name] = arguments
+    end
+
     # Call an actor with a given context. Returns the context.
     #
     #   CreateUser.call(name: 'Joe')
     def call(context = {}, **arguments)
       context = Actor::Context.to_context(context).merge!(arguments)
-      new(context).run
+      new(context).tap do |instance|
+        context._instance = instance
+        instance.run_hooks(before_hooks)
+        instance.call
+        instance.run_hooks(after_hooks)
+      end
       context
     rescue Actor::Success
       context
@@ -49,28 +68,15 @@ class Actor
     end
   end
 
+  private_class_method :new
+
   # :nodoc:
   def initialize(context)
     @context = context
   end
 
-  # To implement in your actors.
-  def call; end
-
-  # To implement in your actors.
-  def rollback; end
-
-  # :nodoc:
-  def before; end
-
-  # :nodoc:
-  def after; end
-
-  # :nodoc:
-  def run
-    before
-    call
-    after
+  def call
+    raise NotImplementedError
   end
 
   private

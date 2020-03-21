@@ -10,15 +10,16 @@ class Actor
   #     output :user, required: true
   #   end
   module Requireable
-    def before
-      super
+    def self.included(base)
+      base.append_before_hooks(BEFORE_HOOK)
+      base.append_after_hooks(AFTER_HOOK)
+    end
 
+    BEFORE_HOOK = proc do
       check_required_definitions(self.class.inputs, kind: 'Input')
     end
 
-    def after
-      super
-
+    AFTER_HOOK = proc do
       check_required_definitions(self.class.outputs, kind: 'Output')
     end
 

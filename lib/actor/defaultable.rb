@@ -11,7 +11,11 @@ class Actor
   #     input :multiplier, default: -> { rand(1..10) }
   #   end
   module Defaultable
-    def before
+    def self.included(base)
+      base.append_before_hooks(BEFORE_HOOK)
+    end
+
+    BEFORE_HOOK = proc do
       self.class.inputs.each do |name, input|
         next if @context.key?(name)
 
@@ -23,8 +27,6 @@ class Actor
         default = default.call if default.respond_to?(:call)
         @context.merge!(name => default)
       end
-
-      super
     end
   end
 end

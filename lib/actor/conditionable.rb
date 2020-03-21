@@ -14,9 +14,11 @@ class Actor
   #     output :user, required: true
   #   end
   module Conditionable
-    def before
-      super
+    def self.included(base)
+      base.append_before_hooks(BEFORE_HOOK)
+    end
 
+    BEFORE_HOOK = proc do
       self.class.inputs.each do |key, options|
         next unless options[:must]
 

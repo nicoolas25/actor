@@ -22,13 +22,17 @@ class Actor
 
     def succeed!(context = {})
       merge!(context)
-      merge!(failure?: false)
+      merge!(failure?: false, early_success?: true)
 
       raise Actor::Success, self
     end
 
     def success?
       !failure?
+    end
+
+    def early_success?
+      super || false
     end
 
     def failure?

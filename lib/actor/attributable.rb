@@ -1,46 +1,33 @@
 # frozen_string_literal: true
 
 class Actor
-  # DSL to document the accepted attributes.
+  # Makes the inputs of an actor easily accessible through the class.
   #
   #   class CreateUser < Actor
   #     input :name
-  #     output :name
+  #
+  #     def m
+  #       name # a #name method has been defined
+  #     end
   #   end
+  #
   module Attributable
     def self.included(base)
-      base.extend(ClassMethods)
       base.prepend(PrependedMethods)
+
+      base_eigenclass = (class << base; self; end)
+      base_eigenclass.prepend(PrependedClassMethods)
     end
 
-    module ClassMethods
-      def inherited(child)
-        super
-
-        child.inputs.merge!(inputs)
-        child.outputs.merge!(outputs)
-      end
-
-      def input(name, **arguments)
-        inputs[name] = arguments
+    module PrependedClassMethods
+      def input(name, **attributes)
+        super(name, **attributes)
 
         define_method(name) do
           context.public_send(name)
         end
 
         private name
-      end
-
-      def inputs
-        @inputs ||= {}
-      end
-
-      def output(name, **arguments)
-        outputs[name] = arguments
-      end
-
-      def outputs
-        @outputs ||= { error: { type: 'String' } }
       end
     end
 
