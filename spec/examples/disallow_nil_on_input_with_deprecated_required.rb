@@ -5,3 +5,13 @@ class DisallowNilOnInputWithDeprecatedRequired < Actor
 
   def call; end
 end
+
+# class UseRequiredInput
+#   def call(**inputs)
+#     unless inputs[:name]
+#       raise ArgumentError, "A :name input is missing"
+#     end
+#
+#     {}
+#   end
+# end

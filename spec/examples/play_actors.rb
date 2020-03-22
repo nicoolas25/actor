@@ -17,3 +17,13 @@ class PlayActors < Actor
        SetNameToDowncase,
        IncrementValue
 end
+
+# class PlayActors < PlayLambdas
+#   ACTIONS = [
+#     IncrementValue,
+#     DoNothing,
+#     AddNameToContext,
+#     SetNameToDowncase,
+#     IncrementValue,
+#   ]
+# end

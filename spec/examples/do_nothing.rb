@@ -2,3 +2,9 @@
 
 class DoNothing < Actor
 end
+
+# class DoNothing
+#   def call(**_inputs)
+#     {}
+#   end
+# end

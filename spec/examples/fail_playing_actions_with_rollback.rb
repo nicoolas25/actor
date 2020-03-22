@@ -15,3 +15,13 @@ class FailPlayingActionsWithRollback < Actor
        FailWithError,
        IncrementValueWithRollback
 end
+
+# class FailPlayingActionsWithRollback < PlayActors
+#   ACTIONS = [
+#     AddNameToContext,
+#     IncrementValueWithRollback,
+#     IncrementValueWithRollback,
+#     FailWithError,
+#     IncrementValueWithRollback,
+#   ]
+# end

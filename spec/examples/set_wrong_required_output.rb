@@ -7,3 +7,9 @@ class SetWrongRequiredOutput < Actor
     # Expected to fail since it is required and we don't output `name`.
   end
 end
+
+# class SetWrongRequiredOutput
+#   def call(**_inputs)
+#     {}
+#   end
+# end

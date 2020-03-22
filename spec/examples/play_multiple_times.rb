@@ -18,3 +18,13 @@ class PlayMultipleTimes < Actor
 
   play IncrementValue
 end
+
+# class PlayMultipleTimes < PlayActors
+#   ACTIONS = [
+#     IncrementValue,
+#     DoNothing,
+#     AddNameToContext,
+#     SetNameToDowncase
+#     IncrementValue,
+#   ]
+# end

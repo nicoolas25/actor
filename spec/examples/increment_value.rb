@@ -8,3 +8,9 @@ class IncrementValue < Actor
     self.value += 1
   end
 end
+
+# class IncrementValue
+#   def call(value:, **_inputs)
+#     { value: value + 1 }
+#   end
+# end

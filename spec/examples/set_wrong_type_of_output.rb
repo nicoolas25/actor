@@ -7,3 +7,9 @@ class SetWrongTypeOfOutput < Actor
     self.name = 42
   end
 end
+
+# class SetWrongTypeOfOutput
+#   def call(**_inputs)
+#     { name: 42 }
+#   end
+# end

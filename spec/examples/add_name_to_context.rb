@@ -7,3 +7,9 @@ class AddNameToContext < Actor
     self.name = 'Jim'
   end
 end
+
+# class AddNameToContext
+#   def call(**_inputs)
+#     { name: 'Jim' }
+#   end
+# end
