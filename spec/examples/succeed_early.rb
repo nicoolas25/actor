@@ -7,3 +7,11 @@ class SucceedEarly < Actor
     raise 'Should never be called'
   end
 end
+
+# class SucceedEarly
+#   def call(**_inputs)
+#     return {}
+#
+#     raise 'Should never be called'
+#   end
+# end

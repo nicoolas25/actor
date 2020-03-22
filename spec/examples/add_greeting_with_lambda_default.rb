@@ -8,3 +8,11 @@ class AddGreetingWithLambdaDefault < Actor
     context.greeting = "Hello, #{name}!"
   end
 end
+
+# class AddGreetingWithLambdaDefault
+#   def call(name:, **_inputs)
+#     name ||= 'world'
+#
+#     { greeting: "Hello, #{name}!" }
+#   end
+# end

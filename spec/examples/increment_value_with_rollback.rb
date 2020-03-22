@@ -12,3 +12,15 @@ class IncrementValueWithRollback < Actor
     context.value -= 1
   end
 end
+
+# class IncrementValue
+#   def call(value:, **_inputs)
+#     { value: value + 1 }
+#   end
+#
+#   def rollback
+#     # Nothing to actually rollback here...
+#     # There is no context to update, the approach uses immutable values rather
+#     # than an envionment or a context.
+#   end
+# end

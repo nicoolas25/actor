@@ -7,3 +7,9 @@ class SetRequiredOutput < Actor
     context.name = 'Jim'
   end
 end
+
+# class SetOutputCalledDisplay
+#   def call(**_inputs)
+#     { name: 'Jim' }
+#   end
+# end

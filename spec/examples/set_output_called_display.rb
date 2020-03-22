@@ -7,3 +7,9 @@ class SetOutputCalledDisplay < Actor
     context.display = 'Foobar'
   end
 end
+
+# class SetOutputCalledDisplay
+#   def call(**_inputs)
+#     { display: 'Foobar' }
+#   end
+# end

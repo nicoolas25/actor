@@ -7,3 +7,11 @@ class UseUnknownInput < Actor
     context.foobar
   end
 end
+
+# class SetUnknownOutput
+#   def call(**inputs)
+#     inputs.fetch(:foobar)
+#
+#     {}
+#   end
+# end

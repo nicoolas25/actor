@@ -7,3 +7,9 @@ class AddHashToContext < Actor
     context.stuff = { name: 'Jim' }
   end
 end
+
+# class AddHashToContext
+#   def call(**_inputs)
+#     { stuff: { name: 'Jim' } }
+#   end
+# end
